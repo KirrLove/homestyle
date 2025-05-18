@@ -38,10 +38,10 @@ const Catalog = () => {
           id: product.id,
           name: product.name,
           price: product.price,
-          category: product.category || "",
+          category: product.category || "Кухни", // Устанавливаем категорию по умолчанию "Кухни"
           image: product.product_images.find((img) => img.is_primary)?.image_path ||
             product.product_images[0]?.image_path ||
-            "https://images.unsplash.com/photo-1556912998-c57cc6b63cd7",
+            "/placeholder.svg",
         }));
       } catch (error) {
         console.error("Error in products query:", error);
