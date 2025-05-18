@@ -42,18 +42,10 @@ const ProductDetails = () => {
       const allProducts = await dataService.getProducts();
       const related = allProducts
         .filter(p => p.category === product.category && p.id !== productId)
-        .slice(0, 2);
+        .slice(0, 3);
 
       console.log("Related products fetched:", related);
-      return related.map((product) => ({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        category: product.category || "",
-        image: product.product_images.find((img) => img.is_primary)?.image_path ||
-          product.product_images[0]?.image_path ||
-          "/placeholder.svg",
-      }));
+      return related;
     },
     enabled: !!product?.category,
   });
@@ -92,11 +84,12 @@ const ProductDetails = () => {
     );
   }
 
-  const productImages = product.product_images.length > 0 
+  const productImages = product.product_images && product.product_images.length > 0 
     ? product.product_images.map(img => img.image_path)
     : ["/placeholder.svg"];
 
-  const specifications = {
+  // Используем информацию из объекта specifications, если он есть
+  const specifications = product.specifications || {
     "Материал": product.material || "Не указан",
     "Цвет": product.color || "Не указан",
     "Размеры": product.dimensions || "Не указаны",
@@ -131,7 +124,7 @@ const ProductDetails = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {productImages.map((image, index) => (
                 <button
                   key={index}
@@ -168,17 +161,59 @@ const ProductDetails = () => {
                 Характеристики
               </h2>
               <div className="space-y-2">
-                {Object.entries(specifications).map(([key, value]) => (
-                  <div
-                    key={key}
-                    className="flex justify-between py-2 border-b border-gray-200"
-                  >
-                    <span className="text-muted-foreground">{key}</span>
-                    <span className="font-medium">{value}</span>
-                  </div>
-                ))}
+                {product.specifications && typeof product.specifications === 'object' ? (
+                  // Если specifications — это вложенный объект с категориями
+                  Object.entries(product.specifications).map(([category, specs]) => (
+                    <div key={category} className="mb-4">
+                      <h3 className="text-lg font-medium mb-2">{category}</h3>
+                      {typeof specs === 'object' && (
+                        <div className="space-y-1">
+                          {Object.entries(specs).map(([key, value]) => (
+                            <div
+                              key={key}
+                              className="flex justify-between py-2 border-b border-gray-200"
+                            >
+                              <span className="text-muted-foreground">{key}</span>
+                              <span className="font-medium">{value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {typeof specs === 'string' && (
+                        <div className="flex justify-between py-2 border-b border-gray-200">
+                          <span className="font-medium">{specs}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  // Если specifications — это плоский объект или отсутствует
+                  Object.entries(specifications).map(([key, value]) => (
+                    <div
+                      key={key}
+                      className="flex justify-between py-2 border-b border-gray-200"
+                    >
+                      <span className="text-muted-foreground">{key}</span>
+                      <span className="font-medium">{value}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
+
+            {/* Features - добавим отображение особенностей */}
+            {product.features && product.features.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-heading font-semibold mb-4">
+                  Особенности
+                </h2>
+                <ul className="list-disc pl-5 space-y-2">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="text-muted-foreground">{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Benefits */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -188,7 +223,11 @@ const ProductDetails = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Shield className="text-accent" />
-                <span className="text-sm">Гарантия {product.warranty || "2 года"}</span>
+                <span className="text-sm">Гарантия {
+                  typeof product.specifications === 'object' && product.specifications.Гарантия 
+                    ? product.specifications.Гарантия 
+                    : (product.warranty || "2 года")
+                }</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Wrench className="text-accent" />
@@ -219,7 +258,13 @@ const ProductDetails = () => {
                   className="animate-fade-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <ProductCard {...product} />
+                  <ProductCard
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    category={product.category || ""}
+                    product_images={product.product_images}
+                  />
                 </div>
               ))}
             </div>
