@@ -1,15 +1,11 @@
+
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../components/shared/SectionTitle";
 import ProductCard from "../components/shared/ProductCard";
 import { Search } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
 import { toast } from "sonner";
-
-type Product = Database['public']['Tables']['products']['Row'] & {
-  product_images: Database['public']['Tables']['product_images']['Row'][]
-};
+import { dataService } from "../services/DataService";
 
 const categories = [
   "Все",
@@ -28,30 +24,17 @@ const Catalog = () => {
   const { data: products = [], isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      console.log("Fetching products from Supabase...");
+      console.log("Fetching products from local storage...");
       try {
-        const { data, error } = await supabase
-          .from("products")
-          .select(`
-            *,
-            product_images (
-              image_path,
-              is_primary
-            )
-          `);
-
-        if (error) {
-          console.error("Supabase error:", error);
-          throw error;
-        }
-
-        if (!data) {
+        const data = await dataService.getProducts();
+        
+        if (!data || data.length === 0) {
           console.log("No products found");
           return [];
         }
 
         console.log("Products fetched successfully:", data);
-        return (data as Product[]).map((product) => ({
+        return data.map((product) => ({
           id: product.id,
           name: product.name,
           price: product.price,
@@ -66,8 +49,6 @@ const Catalog = () => {
         throw error;
       }
     },
-    retry: 2,
-    retryDelay: 1000,
   });
 
   const filteredProducts = products.filter((product) => {

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChevronRight, Truck, Shield, Wrench } from "lucide-react";
@@ -6,12 +7,7 @@ import SectionTitle from "../components/shared/SectionTitle";
 import ProductCard from "../components/shared/ProductCard";
 import { useCart } from "../contexts/CartContext";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
-
-type Product = Database['public']['Tables']['products']['Row'] & {
-  product_images: Database['public']['Tables']['product_images']['Row'][];
-};
+import { dataService } from "../services/DataService";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -25,25 +21,14 @@ const ProductDetails = () => {
       const productId = parseInt(id);
       
       console.log("Fetching product details for id:", productId);
-      const { data, error } = await supabase
-        .from("products")
-        .select(`
-          *,
-          product_images (
-            image_path,
-            is_primary
-          )
-        `)
-        .eq("id", productId)
-        .single();
-
-      if (error) {
-        console.error("Error fetching product:", error);
-        throw error;
+      const data = await dataService.getProductById(productId);
+      
+      if (!data) {
+        throw new Error("Product not found");
       }
 
       console.log("Product data fetched:", data);
-      return data as Product;
+      return data;
     },
   });
 
@@ -54,26 +39,13 @@ const ProductDetails = () => {
       const productId = parseInt(id);
       
       console.log("Fetching related products for category:", product.category);
-      const { data, error } = await supabase
-        .from("products")
-        .select(`
-          *,
-          product_images (
-            image_path,
-            is_primary
-          )
-        `)
-        .eq("category", product.category)
-        .neq("id", productId)
-        .limit(2);
+      const allProducts = await dataService.getProducts();
+      const related = allProducts
+        .filter(p => p.category === product.category && p.id !== productId)
+        .slice(0, 2);
 
-      if (error) {
-        console.error("Error fetching related products:", error);
-        throw error;
-      }
-
-      console.log("Related products fetched:", data);
-      return data.map((product: Product) => ({
+      console.log("Related products fetched:", related);
+      return related.map((product) => ({
         id: product.id,
         name: product.name,
         price: product.price,
