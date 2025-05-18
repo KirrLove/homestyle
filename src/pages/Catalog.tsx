@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import SectionTitle from "../components/shared/SectionTitle";
 import ProductCard from "../components/shared/ProductCard";
@@ -536,7 +535,13 @@ const Catalog = () => {
                 className="animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <ProductCard {...product} />
+                <ProductCard 
+                  id={product.id}
+                  name={product.name}
+                  price={product.price}
+                  category={product.category}
+                  product_images={product.product_images}
+                />
               </div>
             ))}
           </div>

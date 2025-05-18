@@ -1,20 +1,27 @@
+
 import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   id: number;
   name: string;
   price: number;
-  image: string;
   category: string;
+  product_images?: { is_primary?: boolean; image_path: string }[];
+  image?: string; // Keep this for backward compatibility
 }
 
-const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, product_images, image, category }: ProductCardProps) => {
+  // Determine which image URL to use - either from product_images (preferred) or from image prop
+  const imageUrl = product_images && product_images.length > 0
+    ? product_images.find(img => img.is_primary)?.image_path || product_images[0].image_path
+    : image || "/placeholder.svg";
+
   return (
     <Link to={`/product/${id}`} className="group">
       <div className="card overflow-hidden">
         <div className="relative aspect-square overflow-hidden">
           <img
-            src={image}
+            src={imageUrl}
             alt={name}
             className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
           />
