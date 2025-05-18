@@ -1,10 +1,9 @@
+
 import { useState } from "react";
 import { toast } from "sonner";
-import emailjs from '@emailjs/browser';
-import { supabase } from "@/integrations/supabase/client";
 
-// Initialize EmailJS with your public key
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+// Local storage key for contact messages
+const CONTACT_MESSAGES_KEY = "local_contact_messages";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -20,42 +19,25 @@ const ContactForm = () => {
     try {
       console.log('Sending contact form with data:', formData);
 
-      // First, save to Supabase
-      const { error: supabaseError } = await supabase
-        .from('contact_messages')
-        .insert([formData]);
-
-      if (supabaseError) {
-        console.error('Supabase error:', supabaseError);
-        throw supabaseError;
-      }
-
-      // Then send email notification
-      const templateParams = {
-        to_email: 'homestyle158@gmail.com',
-        from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone,
-        message: formData.message,
+      // Create message object with timestamp and ID
+      const newMessage = {
+        id: Date.now(),
+        ...formData,
+        created_at: new Date().toISOString(),
       };
 
-      console.log('Sending email with params:', templateParams);
+      // Get existing messages from localStorage
+      const existingMessagesJSON = localStorage.getItem(CONTACT_MESSAGES_KEY);
+      const existingMessages = existingMessagesJSON ? JSON.parse(existingMessagesJSON) : [];
+      
+      // Add new message to existing messages
+      const updatedMessages = [...existingMessages, newMessage];
+      
+      // Save to localStorage
+      localStorage.setItem(CONTACT_MESSAGES_KEY, JSON.stringify(updatedMessages));
 
-      const response = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
-
-      console.log('EmailJS Response:', response);
-
-      if (response.status === 200) {
-        toast.success("Сообщение отправлено! Мы свяжемся с вами в ближайшее время.");
-        setFormData({ name: "", phone: "", email: "", message: "" });
-      } else {
-        throw new Error('Failed to send email');
-      }
+      toast.success("Сообщение отправлено! Мы свяжемся с вами в ближайшее время.");
+      setFormData({ name: "", phone: "", email: "", message: "" });
     } catch (error) {
       console.error('Error sending message:', error);
       toast.error("Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.");

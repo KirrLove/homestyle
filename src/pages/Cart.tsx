@@ -1,11 +1,14 @@
+
 import { ShoppingCart, Trash2 } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import SectionTitle from "../components/shared/SectionTitle";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+
+// Local storage key for orders
+const ORDERS_KEY = "local_orders";
 
 const Cart = () => {
   const { items, removeItem, getTotalPrice, clearCart } = useCart();
@@ -16,6 +19,7 @@ const Cart = () => {
     address: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,67 +43,32 @@ const Cart = () => {
         total_price: item.price * item.quantity
       }));
 
-      // 1. Create order in database with order details
-      const { data: orderData, error: orderError } = await supabase
-        .from('orders')
-        .insert({
-          user_name: formData.name,
-          user_email: formData.email,
-          user_phone: formData.phone,
-          delivery_address: formData.address,
-          total_amount: getTotalPrice(),
-          status: 'new',
-          order_details: orderDetails
-        })
-        .select()
-        .single();
+      // Create the order object
+      const newOrder = {
+        id: Date.now(),
+        created_at: new Date().toISOString(),
+        user_name: formData.name,
+        user_email: formData.email,
+        user_phone: formData.phone,
+        delivery_address: formData.address,
+        total_amount: getTotalPrice(),
+        status: 'Новый',
+        order_details: orderDetails
+      };
 
-      if (orderError) {
-        console.error("Error creating order:", orderError);
-        throw orderError;
-      }
+      // Get existing orders from localStorage
+      const existingOrdersJSON = localStorage.getItem(ORDERS_KEY);
+      const existingOrders = existingOrdersJSON ? JSON.parse(existingOrdersJSON) : [];
+      
+      // Add new order to existing orders
+      const updatedOrders = [...existingOrders, newOrder];
+      
+      // Save to localStorage
+      localStorage.setItem(ORDERS_KEY, JSON.stringify(updatedOrders));
 
-      console.log("Order created:", orderData);
-
-      // 2. Create order items with product details
-      const orderItems = items.map(item => ({
-        order_id: orderData.id,
-        product_id: item.id,
-        quantity: item.quantity,
-        price_at_time: item.price
-      }));
-
-      const { error: itemsError } = await supabase
-        .from('order_items')
-        .insert(orderItems);
-
-      if (itemsError) {
-        console.error("Error creating order items:", itemsError);
-        throw itemsError;
-      }
-
-      // 3. Send confirmation email
-      const orderDetailsHtml = items.map(item => 
-        `<p>${item.name} - ${item.quantity}шт. - ${item.price * item.quantity}₽</p>`
-      ).join('');
-
-      const { error: emailError } = await supabase.functions.invoke('send-order-confirmation', {
-        body: {
-          to: formData.email,
-          userName: formData.name,
-          orderDetails: orderDetailsHtml,
-          totalAmount: getTotalPrice(),
-          deliveryAddress: formData.address
-        }
-      });
-
-      if (emailError) {
-        console.error('Error sending confirmation email:', emailError);
-        // Continue with order success even if email fails
-      }
-
-      toast.success("Заказ успешно оформлен! Мы отправили подтверждение на вашу почту.");
+      toast.success("Заказ успешно оформлен! Мы свяжемся с вами в ближайшее время.");
       clearCart();
+      setIsDialogOpen(false);
     } catch (error) {
       console.error('Error submitting order:', error);
       toast.error("Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте позже.");
@@ -167,7 +136,7 @@ const Cart = () => {
             <span>Итого:</span>
             <span>{getTotalPrice().toLocaleString("ru-RU")} ₽</span>
           </div>
-          <Dialog>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <button className="btn-primary mt-4 w-full">Оформить заказ</button>
             </DialogTrigger>

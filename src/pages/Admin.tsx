@@ -1,12 +1,16 @@
 
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { dataService } from "@/services/DataService";
 import { ShoppingCart, Ruler, MessageSquare, Package2 } from "lucide-react";
 import SectionTitle from "../components/shared/SectionTitle";
 import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
+
+// Local storage keys
+const ORDERS_KEY = "local_orders";
+const MEASUREMENT_REQUESTS_KEY = "local_measurement_requests";
+const CONTACT_MESSAGES_KEY = "local_contact_messages";
+const PRODUCTS_KEY = "local_products";
 
 const Admin = () => {
   const [selectedTab, setSelectedTab] = useState("orders");
@@ -61,16 +65,38 @@ const Admin = () => {
 };
 
 const OrdersTab = () => {
-  const { data: orders = [], isLoading, refetch } = useQuery({
-    queryKey: ["admin-orders"],
-    queryFn: () => dataService.getOrders(),
-  });
+  const [orders, setOrders] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
-  const updateOrderStatus = async (orderId: number, newStatus: string) => {
+  useEffect(() => {
+    // Load orders from localStorage
+    const loadOrders = () => {
+      try {
+        const ordersJSON = localStorage.getItem(ORDERS_KEY);
+        const ordersData = ordersJSON ? JSON.parse(ordersJSON) : [];
+        setOrders(ordersData);
+      } catch (error) {
+        console.error("Error loading orders:", error);
+        toast.error("Ошибка при загрузке заказов");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadOrders();
+  }, []);
+  
+  const updateOrderStatus = (orderId: number, newStatus: string) => {
     try {
-      await dataService.updateOrderStatus(orderId, newStatus);
+      // Find the order and update its status
+      const updatedOrders = orders.map(order => 
+        order.id === orderId ? { ...order, status: newStatus } : order
+      );
+      
+      // Save back to localStorage
+      localStorage.setItem(ORDERS_KEY, JSON.stringify(updatedOrders));
+      setOrders(updatedOrders);
       toast.success("Статус заказа обновлен");
-      refetch();
     } catch (error) {
       toast.error("Ошибка при обновлении статуса");
     }
@@ -145,16 +171,38 @@ const OrdersTab = () => {
 };
 
 const MeasurementsTab = () => {
-  const { data: requests = [], isLoading, refetch } = useQuery({
-    queryKey: ["admin-measurements"],
-    queryFn: () => dataService.getMeasurementRequests(),
-  });
+  const [requests, setRequests] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
-  const updateRequestStatus = async (requestId: number, newStatus: string) => {
+  useEffect(() => {
+    // Load measurement requests from localStorage
+    const loadRequests = () => {
+      try {
+        const requestsJSON = localStorage.getItem(MEASUREMENT_REQUESTS_KEY);
+        const requestsData = requestsJSON ? JSON.parse(requestsJSON) : [];
+        setRequests(requestsData);
+      } catch (error) {
+        console.error("Error loading measurement requests:", error);
+        toast.error("Ошибка при загрузке заявок на замер");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadRequests();
+  }, []);
+  
+  const updateRequestStatus = (requestId: number, newStatus: string) => {
     try {
-      await dataService.updateMeasurementRequestStatus(requestId, newStatus);
+      // Find the request and update its status
+      const updatedRequests = requests.map(request => 
+        request.id === requestId ? { ...request, status: newStatus } : request
+      );
+      
+      // Save back to localStorage
+      localStorage.setItem(MEASUREMENT_REQUESTS_KEY, JSON.stringify(updatedRequests));
+      setRequests(updatedRequests);
       toast.success("Статус заявки обновлен");
-      refetch();
     } catch (error) {
       toast.error("Ошибка при обновлении статуса");
     }
@@ -234,10 +282,26 @@ const MeasurementsTab = () => {
 };
 
 const MessagesTab = () => {
-  const { data: messages = [], isLoading } = useQuery({
-    queryKey: ["admin-messages"],
-    queryFn: () => dataService.getContactMessages(),
-  });
+  const [messages, setMessages] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Load contact messages from localStorage
+    const loadMessages = () => {
+      try {
+        const messagesJSON = localStorage.getItem(CONTACT_MESSAGES_KEY);
+        const messagesData = messagesJSON ? JSON.parse(messagesJSON) : [];
+        setMessages(messagesData);
+      } catch (error) {
+        console.error("Error loading messages:", error);
+        toast.error("Ошибка при загрузке сообщений");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadMessages();
+  }, []);
 
   if (isLoading) {
     return <div className="text-center">Загрузка...</div>;
@@ -270,10 +334,38 @@ const MessagesTab = () => {
 };
 
 const ProductsTab = () => {
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ["admin-products"],
-    queryFn: () => dataService.getProducts(),
-  });
+  const [products, setProducts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Load products from localStorage
+    const loadProducts = () => {
+      try {
+        // First try to load from our dedicated products storage
+        let productsJSON = localStorage.getItem(PRODUCTS_KEY);
+        
+        if (!productsJSON) {
+          // If no products found in dedicated storage, try to get them from data service cache
+          const dataServiceCache = localStorage.getItem('cachedProducts');
+          if (dataServiceCache) {
+            productsJSON = dataServiceCache;
+            // Store in our dedicated storage for future use
+            localStorage.setItem(PRODUCTS_KEY, dataServiceCache);
+          }
+        }
+        
+        const productsData = productsJSON ? JSON.parse(productsJSON) : [];
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error loading products:", error);
+        toast.error("Ошибка при загрузке товаров");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadProducts();
+  }, []);
 
   if (isLoading) {
     return <div className="text-center">Загрузка...</div>;
@@ -311,7 +403,7 @@ const ProductsTab = () => {
                   <td className="px-4 py-3">#{product.id}</td>
                   <td className="px-4 py-3">
                     <img 
-                      src={product.product_images[0]?.image_path || "/placeholder.svg"} 
+                      src={product.product_images?.[0]?.image_path || "/placeholder.svg"} 
                       alt={product.name}
                       className="w-16 h-16 object-cover rounded-md"
                     />

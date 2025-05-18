@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { Ruler, Clock, Palette, Shield, Wrench, CheckCircle2, Star } from "lucide-react";
+
+// Local storage key for measurement requests
+const MEASUREMENT_REQUESTS_KEY = "local_measurement_requests";
 
 const CustomFurniture = () => {
   const [formData, setFormData] = useState({
@@ -22,11 +24,23 @@ const CustomFurniture = () => {
     try {
       console.log('Submitting measurement request:', formData);
       
-      const { error } = await supabase
-        .from('measurement_requests')
-        .insert([formData]);
+      // Create a new request object with ID, timestamp and status
+      const newRequest = {
+        id: Date.now(),
+        ...formData,
+        created_at: new Date().toISOString(),
+        status: "Новая"
+      };
 
-      if (error) throw error;
+      // Get existing requests from localStorage
+      const existingRequestsJSON = localStorage.getItem(MEASUREMENT_REQUESTS_KEY);
+      const existingRequests = existingRequestsJSON ? JSON.parse(existingRequestsJSON) : [];
+      
+      // Add new request to existing requests
+      const updatedRequests = [...existingRequests, newRequest];
+      
+      // Save to localStorage
+      localStorage.setItem(MEASUREMENT_REQUESTS_KEY, JSON.stringify(updatedRequests));
 
       toast.success("Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.");
       setFormData({
