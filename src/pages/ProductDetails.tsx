@@ -166,7 +166,7 @@ const ProductDetails = () => {
                   Object.entries(product.specifications).map(([category, specs]) => (
                     <div key={category} className="mb-4">
                       <h3 className="text-lg font-medium mb-2">{category}</h3>
-                      {typeof specs === 'object' && (
+                      {typeof specs === 'object' && specs !== null && (
                         <div className="space-y-1">
                           {Object.entries(specs).map(([key, value]) => (
                             <div
@@ -174,7 +174,7 @@ const ProductDetails = () => {
                               className="flex justify-between py-2 border-b border-gray-200"
                             >
                               <span className="text-muted-foreground">{key}</span>
-                              <span className="font-medium">{value}</span>
+                              <span className="font-medium">{String(value)}</span>
                             </div>
                           ))}
                         </div>
@@ -194,7 +194,7 @@ const ProductDetails = () => {
                       className="flex justify-between py-2 border-b border-gray-200"
                     >
                       <span className="text-muted-foreground">{key}</span>
-                      <span className="font-medium">{value}</span>
+                      <span className="font-medium">{String(value)}</span>
                     </div>
                   ))
                 )}
@@ -224,8 +224,8 @@ const ProductDetails = () => {
               <div className="flex items-center space-x-2">
                 <Shield className="text-accent" />
                 <span className="text-sm">Гарантия {
-                  typeof product.specifications === 'object' && product.specifications.Гарантия 
-                    ? product.specifications.Гарантия 
+                  product.specifications && typeof product.specifications === 'object' && 'Гарантия' in product.specifications 
+                    ? String(product.specifications.Гарантия) 
                     : (product.warranty || "2 года")
                 }</span>
               </div>
