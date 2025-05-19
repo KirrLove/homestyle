@@ -4,11 +4,17 @@ import {
   ordersMockData, 
   measurementRequestsMockData, 
   contactMessagesMockData,
-  Product,
+  Product as MockProduct,
   Order,
   MeasurementRequest,
   ContactMessage
 } from '../data/mockData';
+
+// Расширяем интерфейс Product, чтобы добавить недостающие поля
+interface Product extends MockProduct {
+  features?: string[];
+  specifications?: Record<string, any>;
+}
 
 /**
  * Класс для работы с данными в локальном хранилище
