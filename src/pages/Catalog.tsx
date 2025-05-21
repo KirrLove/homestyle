@@ -3,6 +3,7 @@ import SectionTitle from "../components/shared/SectionTitle";
 import ProductCard from "../components/shared/ProductCard";
 import { Search } from "lucide-react";
 import { toast } from "sonner";
+import { dataService } from "../services/DataService";
 
 const categories = [
   "Все",
@@ -294,135 +295,19 @@ const Catalog = () => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const loadProducts = () => {
+    const loadProducts = async () => {
       try {
-        console.log("Fetching products from local storage...");
+        console.log("Loading products from data service...");
         setIsLoading(true);
         
-        // Try to load from localStorage first
-        const cachedProductsJson = localStorage.getItem(PRODUCTS_KEY);
+        // Get products from data service to ensure consistency
+        const productsData = await dataService.getProducts();
+        console.log("Loaded products:", productsData);
         
-        if (cachedProductsJson) {
-          const cachedProducts = JSON.parse(cachedProductsJson);
-          console.log("Loaded cached products:", cachedProducts);
-          
-          // Process products with correct images
-          const processedProducts = processProductsWithImages(cachedProducts);
-          setProducts(processedProducts);
-          setIsLoading(false);
-          return;
-        }
-        
-        // If not in localStorage, fetch from the mock data in data service
-        // This would typically be a fetch from an API, but we'll simulate it
-        
-        // Simulate API fetch delay
-        setTimeout(() => {
-          // This would be the data fetched from an API
-          // For now, we'll create a basic set of products
-          const mockProducts = [
-            { 
-              id: 1, 
-              name: "Сатуко", 
-              price: 77100, 
-              category: "Кухни",
-              description: "Современная кухня в японском стиле"
-            },
-            { 
-              id: 2, 
-              name: "Греджи", 
-              price: 40820, 
-              category: "Кухни",
-              description: "Элегантная кухня с современными акцентами"
-            },
-            { 
-              id: 3, 
-              name: "Вайтлайн", 
-              price: 48560, 
-              category: "Кухни",
-              description: "Светлая кухня в скандинавском стиле"
-            },
-            { 
-              id: 4, 
-              name: "Минимал", 
-              price: 52300, 
-              category: "Кухни",
-              description: "Минималистичная кухня в современном стиле"
-            },
-            { 
-              id: 5, 
-              name: "П-образная классика", 
-              price: 68500, 
-              category: "Кухни",
-              description: "Функциональная П-образная кухня"
-            },
-            { 
-              id: 6, 
-              name: "Островная Люкс", 
-              price: 92800, 
-              category: "Кухни",
-              description: "Просторная кухня с островом"
-            },
-            { 
-              id: 7, 
-              name: "Лофт Индастриал", 
-              price: 58900, 
-              category: "Кухни",
-              description: "Брутальная кухня в стиле лофт"
-            },
-            { 
-              id: 8, 
-              name: "Скандинавский Стиль", 
-              price: 45800, 
-              category: "Кухни",
-              description: "Светлая просторная кухня в скандинавском стиле"
-            },
-            { 
-              id: 9, 
-              name: "Неоклассика", 
-              price: 63500, 
-              category: "Кухни",
-              description: "Элегантная кухня, сочетающая классические формы"
-            },
-            { 
-              id: 10, 
-              name: "Урбан", 
-              price: 55200, 
-              category: "Кухни",
-              description: "Стильная городская кухня в стиле хай-тек"
-            },
-            { 
-              id: 11, 
-              name: "Рустик", 
-              price: 72800, 
-              category: "Кухни",
-              description: "Деревенская кухня с натуральными материалами"
-            },
-            { 
-              id: 12, 
-              name: "Эко-Стиль", 
-              price: 67500, 
-              category: "Кухни",
-              description: "Экологичная кухня из натуральных материалов"
-            },
-            { 
-              id: 0, 
-              name: "Модерна", 
-              price: 38900, 
-              category: "Кухни",
-              description: "Компактная современная кухня"
-            },
-          ];
-          
-          // Process products with images
-          const processedProducts = processProductsWithImages(mockProducts);
-          
-          // Save to localStorage for future use
-          localStorage.setItem(PRODUCTS_KEY, JSON.stringify(processedProducts));
-          
-          setProducts(processedProducts);
-          setIsLoading(false);
-        }, 500);
+        // Process products with correct images
+        const processedProducts = processProductsWithImages(productsData);
+        setProducts(processedProducts);
+        setIsLoading(false);
       } catch (err) {
         console.error("Error loading products:", err);
         setError(err as Error);
@@ -472,7 +357,7 @@ const Catalog = () => {
   });
 
   return (
-    <div className="py-12 animate-fade-in">
+    <div className="py-24 animate-fade-in">
       <div className="container">
         <SectionTitle
           title="Каталог мебели"
@@ -488,7 +373,7 @@ const Catalog = () => {
                 placeholder="Поиск по каталогу"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             </div>
@@ -499,7 +384,7 @@ const Catalog = () => {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     selectedCategory === category
-                      ? "bg-accent text-white"
+                      ? "bg-accent text-white shadow-md"
                       : "bg-secondary text-primary hover:bg-accent/10"
                   }`}
                 >
@@ -521,7 +406,8 @@ const Catalog = () => {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 space-y-4">
+            <div className="animate-spin w-8 h-8 border-4 border-accent border-t-transparent rounded-full mx-auto"></div>
             <p className="text-lg text-muted-foreground">Загрузка товаров...</p>
           </div>
         )}

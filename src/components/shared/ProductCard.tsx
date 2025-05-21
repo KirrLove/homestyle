@@ -18,7 +18,7 @@ const ProductCard = ({ id, name, price, product_images, image, category }: Produ
 
   return (
     <Link to={`/product/${id}`} className="group">
-      <div className="card overflow-hidden flex flex-col h-full">
+      <div className="card overflow-hidden flex flex-col h-full shadow-md hover:shadow-lg transition-all duration-300 rounded-xl">
         <div className="relative aspect-square overflow-hidden">
           <img
             src={imageUrl}
@@ -27,8 +27,10 @@ const ProductCard = ({ id, name, price, product_images, image, category }: Produ
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        <div className="p-5 flex flex-col flex-grow">
-          <p className="text-sm text-accent uppercase tracking-wider font-medium mb-1">{category}</p>
+        <div className="p-5 flex flex-col flex-grow bg-white">
+          <div className="flex items-center mb-1">
+            <span className="text-xs font-medium text-accent uppercase tracking-wider px-2 py-1 bg-accent/10 rounded-full">{category}</span>
+          </div>
           <h3 className="font-heading font-medium text-lg mb-2 line-clamp-2 group-hover:text-accent transition-colors">{name}</h3>
           <p className="text-accent font-semibold mt-auto text-lg">
             {price.toLocaleString("ru-RU")} ₽
