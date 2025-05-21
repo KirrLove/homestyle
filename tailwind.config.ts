@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,31 +26,37 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#2C3338",
+          DEFAULT: "#1A1F2C",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#E8E9EB",
-          foreground: "#2C3338",
+          DEFAULT: "#F2F3F5",
+          foreground: "#1A1F2C",
         },
         accent: {
-          DEFAULT: "#C8A27D",
+          DEFAULT: "#D9A374",
           foreground: "#FFFFFF",
+          light: "#F2E3D5",
         },
         muted: {
-          DEFAULT: "#F3F4F6",
-          foreground: "#6B7280",
+          DEFAULT: "#F9FAFB",
+          foreground: "#637381",
         },
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         heading: ["Montserrat", "sans-serif"],
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 0.25rem)",
+        sm: "calc(var(--radius) - 0.5rem)",
+      },
       keyframes: {
         "fade-up": {
           "0%": {
             opacity: "0",
-            transform: "translateY(10px)",
+            transform: "translateY(20px)",
           },
           "100%": {
             opacity: "1",
@@ -64,11 +71,26 @@ export default {
             opacity: "1",
           },
         },
+        "scale-up": {
+          "0%": {
+            transform: "scale(0.95)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+        },
       },
       animation: {
-        "fade-up": "fade-up 0.5s ease-out",
-        "fade-in": "fade-in 0.3s ease-out",
+        "fade-up": "fade-up 0.6s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
+        "scale-up": "scale-up 0.4s ease-out",
       },
+      boxShadow: {
+        'soft': '0 10px 25px -3px rgba(0, 0, 0, 0.05)',
+        'card': '0 4px 20px rgba(0, 0, 0, 0.08)',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

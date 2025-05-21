@@ -57,7 +57,9 @@ const ProductDetails = () => {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.product_images[0]?.image_path || "/placeholder.svg",
+      image: product.product_images && product.product_images.length > 0 
+        ? product.product_images[0].image_path 
+        : "/placeholder.svg",
       category: product.category || "",
     });
     
@@ -66,9 +68,10 @@ const ProductDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="container py-12">
-        <div className="text-center">
-          <p className="text-lg text-muted-foreground">Загрузка товара...</p>
+      <div className="container py-32 min-h-screen">
+        <div className="text-center animate-pulse">
+          <div className="w-2/3 h-6 bg-gray-200 rounded mx-auto mb-4"></div>
+          <div className="w-1/2 h-4 bg-gray-200 rounded mx-auto"></div>
         </div>
       </div>
     );
@@ -76,7 +79,7 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <div className="container py-12">
+      <div className="container py-32 min-h-screen">
         <div className="text-center">
           <p className="text-lg text-muted-foreground">Товар не найден</p>
         </div>
@@ -98,10 +101,10 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="py-12 animate-fade-in">
+    <div className="py-32 animate-fade-in">
       <div className="container">
         {/* Breadcrumbs */}
-        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
+        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-12">
           <a href="/" className="hover:text-accent">
             Главная
           </a>
@@ -110,14 +113,14 @@ const ProductDetails = () => {
             Каталог
           </a>
           <ChevronRight size={16} />
-          <span className="text-primary">{product.name}</span>
+          <span className="text-accent">{product.name}</span>
         </div>
 
         {/* Product Details */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           {/* Product Images */}
-          <div className="space-y-4">
-            <div className="aspect-square rounded-lg overflow-hidden">
+          <div className="space-y-6 animate-fade-in">
+            <div className="aspect-square rounded-2xl overflow-hidden border border-gray-100 shadow-lg">
               <img
                 src={productImages[selectedImage]}
                 alt={product.name}
@@ -129,10 +132,10 @@ const ProductDetails = () => {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
+                  className={`aspect-square rounded-lg overflow-hidden transition-all ${
                     selectedImage === index
-                      ? "border-accent"
-                      : "border-transparent"
+                      ? "border-2 border-accent shadow-md scale-105"
+                      : "border border-gray-200 opacity-70 hover:opacity-100"
                   }`}
                 >
                   <img
@@ -146,21 +149,68 @@ const ProductDetails = () => {
           </div>
 
           {/* Product Info */}
-          <div>
-            <h1 className="text-3xl font-heading font-bold mb-4">
+          <div className="animate-fade-up">
+            <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4">
               {product.name}
             </h1>
             <p className="text-2xl font-semibold text-accent mb-6">
               {product.price.toLocaleString("ru-RU")} ₽
             </p>
-            <p className="text-muted-foreground mb-8">{product.description}</p>
+            <div className="bg-gray-50 rounded-xl p-6 mb-8">
+              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+            </div>
+
+            {/* Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="flex items-center space-x-3 p-4 bg-accent/5 rounded-xl">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <Truck className="text-accent" size={20} />
+                </div>
+                <span className="text-sm">Доставка по России</span>
+              </div>
+              <div className="flex items-center space-x-3 p-4 bg-accent/5 rounded-xl">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <Shield className="text-accent" size={20} />
+                </div>
+                <span className="text-sm">Гарантия {
+                  product.specifications && typeof product.specifications === 'object' && 'Гарантия' in product.specifications 
+                    ? String(product.specifications.Гарантия) 
+                    : (product.warranty || "2 года")
+                }</span>
+              </div>
+              <div className="flex items-center space-x-3 p-4 bg-accent/5 rounded-xl">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <Wrench className="text-accent" size={20} />
+                </div>
+                <span className="text-sm">Установка</span>
+              </div>
+            </div>
+
+            {/* Features - добавим отображение особенностей */}
+            {product.features && product.features.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-heading font-semibold mb-4 flex items-center">
+                  <span className="w-2 h-8 bg-accent mr-3 rounded-full"></span>
+                  Особенности
+                </h2>
+                <ul className="space-y-2 bg-gray-50 p-6 rounded-xl">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="text-muted-foreground flex items-start">
+                      <span className="h-2 w-2 bg-accent rounded-full mt-2 mr-2"></span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Specifications */}
             <div className="mb-8">
-              <h2 className="text-xl font-heading font-semibold mb-4">
+              <h2 className="text-xl font-heading font-semibold mb-4 flex items-center">
+                <span className="w-2 h-8 bg-accent mr-3 rounded-full"></span>
                 Характеристики
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-2 bg-gray-50 p-6 rounded-xl">
                 {product.specifications && typeof product.specifications === 'object' ? (
                   // Если specifications — это вложенный объект с категориями
                   Object.entries(product.specifications).map(([category, specs]) => (
@@ -171,16 +221,16 @@ const ProductDetails = () => {
                           {Object.entries(specs).map(([key, value]) => (
                             <div
                               key={key}
-                              className="flex justify-between py-2 border-b border-gray-200"
+                              className="flex justify-between py-2 px-3 border-b border-gray-200 hover:bg-white rounded-lg transition-colors group"
                             >
-                              <span className="text-muted-foreground">{key}</span>
+                              <span className="text-muted-foreground group-hover:text-gray-700 transition-colors">{key}</span>
                               <span className="font-medium">{String(value)}</span>
                             </div>
                           ))}
                         </div>
                       )}
                       {typeof specs === 'string' && (
-                        <div className="flex justify-between py-2 border-b border-gray-200">
+                        <div className="flex py-2 px-3 border-b border-gray-200 hover:bg-white rounded-lg transition-colors">
                           <span className="font-medium">{specs}</span>
                         </div>
                       )}
@@ -191,9 +241,9 @@ const ProductDetails = () => {
                   Object.entries(specifications).map(([key, value]) => (
                     <div
                       key={key}
-                      className="flex justify-between py-2 border-b border-gray-200"
+                      className="flex justify-between py-2 px-3 border-b border-gray-200 hover:bg-white rounded-lg transition-colors group"
                     >
-                      <span className="text-muted-foreground">{key}</span>
+                      <span className="text-muted-foreground group-hover:text-gray-700 transition-colors">{key}</span>
                       <span className="font-medium">{String(value)}</span>
                     </div>
                   ))
@@ -201,44 +251,13 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* Features - добавим отображение особенностей */}
-            {product.features && product.features.length > 0 && (
-              <div className="mb-8">
-                <h2 className="text-xl font-heading font-semibold mb-4">
-                  Особенности
-                </h2>
-                <ul className="list-disc pl-5 space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="text-muted-foreground">{feature}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="flex items-center space-x-2">
-                <Truck className="text-accent" />
-                <span className="text-sm">Доставка по России</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Shield className="text-accent" />
-                <span className="text-sm">Гарантия {
-                  product.specifications && typeof product.specifications === 'object' && 'Гарантия' in product.specifications 
-                    ? String(product.specifications.Гарантия) 
-                    : (product.warranty || "2 года")
-                }</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Wrench className="text-accent" />
-                <span className="text-sm">Установка</span>
-              </div>
-            </div>
-
             {/* Action Buttons */}
-            <div className="space-y-4">
-              <button onClick={handleAddToCart} className="btn-primary w-full">
-                В корзину
+            <div className="mt-10">
+              <button 
+                onClick={handleAddToCart} 
+                className="btn-primary w-full py-4 text-lg font-medium flex items-center justify-center space-x-2"
+              >
+                <span>В корзину</span>
               </button>
             </div>
           </div>
@@ -246,7 +265,7 @@ const ProductDetails = () => {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <section>
+          <section className="pt-16 border-t">
             <SectionTitle
               title="Похожие товары"
               subtitle="Вам также может понравиться"
