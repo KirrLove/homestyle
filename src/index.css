@@ -13,9 +13,9 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 210 40% 12%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 220 13% 91%;
+    --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -27,6 +27,14 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 1rem;
+    
+    /* Enhanced design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(210 40% 12%), hsl(210 40% 16%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 60% 64%), hsl(25 60% 68%));
+    --gradient-soft: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-accent: 0 4px 20px rgba(217, 163, 116, 0.3);
   }
 
   body {
@@ -65,11 +73,30 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100;
+    @apply bg-white rounded-2xl border border-gray-100 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
   }
   
   .glass-card {
-    @apply backdrop-blur-sm bg-white/80 border border-white/20 rounded-2xl shadow-xl;
+    @apply backdrop-blur-sm bg-white/80 border border-white/20 rounded-2xl;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .accent-gradient {
+    background: var(--gradient-accent);
+  }
+  
+  .soft-gradient {
+    background: var(--gradient-soft);
   }
 }
 
