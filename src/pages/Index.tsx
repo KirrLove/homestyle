@@ -291,6 +291,7 @@ const Index = () => {
           <SectionTitle
             title="Наши достижения"
             subtitle="Цифры, которые говорят о нашем опыте"
+            className="text-white"
           />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">

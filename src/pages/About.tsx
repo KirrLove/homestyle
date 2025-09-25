@@ -224,6 +224,7 @@ const About = () => {
           <SectionTitle
             title="Наши достижения в цифрах"
             subtitle="Результаты, которыми мы гордимся"
+            className="text-white"
           />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
