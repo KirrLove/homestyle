@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
 import About from "./pages/About";
@@ -14,6 +15,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import CustomFurniture from "./pages/CustomFurniture";
 import Admin from "./pages/Admin";
+import NotFound from "./pages/NotFound";
 import { CartProvider } from "./contexts/CartContext";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow pt-20">
@@ -37,6 +40,7 @@ const App = () => (
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/custom-furniture" element={<CustomFurniture />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
