@@ -69,28 +69,28 @@ const CustomFurniture = () => {
   const benefits = [
     {
       icon: Ruler,
-      title: "Точные замеры",
-      description: "Бесплатный выезд специалиста для замеров и консультации",
+      title: "Бесплатный замер",
+      description: "Мастер приедет в удобное время, снимет размеры и покажет материалы",
     },
     {
       icon: Clock,
-      title: "Быстрое изготовление",
-      description: "Срок изготовления от 14 дней",
+      title: "Готово за 7-10 дней",
+      description: "Точные сроки благодаря собственному производству в Москве",
     },
     {
       icon: Palette,
-      title: "Индивидуальный дизайн",
-      description: "Разработка уникального проекта под ваши потребности",
+      title: "Любой дизайн",
+      description: "Реализуем ваши идеи или предложим готовые решения",
     },
     {
       icon: Wrench,
-      title: "Профессиональный монтаж",
-      description: "Установка мебели опытными специалистами",
+      title: "Монтаж в подарок",
+      description: "Установим за один день и уберём весь мусор",
     },
     {
       icon: Shield,
-      title: "Гарантия качества",
-      description: "Гарантия на всю мебель от 12 месяцев",
+      title: "Гарантия 24 месяца",
+      description: "Расширенная гарантия на мебель и всю фурнитуру",
     },
   ];
 
@@ -169,19 +169,23 @@ const CustomFurniture = () => {
         />
         <div className="container relative z-20 text-white">
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-            Мебель на заказ
+            Мебель под ваши размеры в Москве
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl">
-            Создаем уникальную мебель по вашим размерам и пожеланиям с 2010 года
+            Изготовим кухню, шкаф-купе или гардеробную точно под ваше помещение. Производство в Москве, готово за 7-10 дней
           </p>
-          <div className="flex gap-4">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-6 h-6 text-accent" />
-              <span>Более 1000 довольных клиентов</span>
+          <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>Замер бесплатно</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-6 h-6 text-accent" />
-              <span>10+ лет опыта</span>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>1200+ довольных семей</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>Работаем с 2015 года</span>
             </div>
           </div>
         </div>
@@ -191,8 +195,8 @@ const CustomFurniture = () => {
       <section className="py-20 bg-secondary">
         <div className="container">
           <SectionTitle
-            title="Преимущества мебели на заказ"
-            subtitle="Почему стоит выбрать индивидуальное производство"
+            title="Почему мебель на заказ лучше"
+            subtitle="Идеально подходит для новостроек — используете каждый сантиметр"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
@@ -291,8 +295,8 @@ const CustomFurniture = () => {
       <section className="py-20 bg-secondary">
         <div className="container max-w-4xl">
           <SectionTitle
-            title="Заявка на бесплатный замер"
-            subtitle="Оставьте заявку, и наш специалист свяжется с вами для уточнения деталей"
+            title="Закажите бесплатный замер"
+            subtitle="Заполните форму, и мы перезвоним в течение 15 минут, чтобы договориться о времени"
           />
           <form onSubmit={handleSubmit} className="space-y-6 bg-white rounded-lg p-8 shadow-md">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

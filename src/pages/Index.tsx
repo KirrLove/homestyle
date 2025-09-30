@@ -1,4 +1,4 @@
-import { ArrowRight, Truck, Clock, Wrench, Shield, Star, Users, Ruler } from "lucide-react";
+import { ArrowRight, Truck, Clock, Wrench, Shield, Star, Users, Ruler, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SectionTitle from "../components/shared/SectionTitle";
 import ProductCard from "../components/shared/ProductCard";
@@ -51,52 +51,52 @@ const featuredProducts = [
 const benefits = [
   {
     icon: Wrench,
-    title: "Собственное производство",
-    description: "Полный контроль качества на всех этапах производства",
+    title: "Производство в Москве",
+    description: "Собственный цех с современным оборудованием — контролируем каждый этап",
   },
   {
     icon: Clock,
-    title: "Быстрое изготовление",
-    description: "Срок производства от 5 до 10 рабочих дней",
+    title: "Готово за 7-10 дней",
+    description: "Точные сроки благодаря отлаженному производству. Без задержек",
   },
   {
     icon: Truck,
-    title: "Доставка по России",
-    description: "Организуем доставку в любой город России",
+    title: "Доставка и монтаж",
+    description: "Бесплатная доставка по Москве и МО. Профессиональная установка",
   },
   {
     icon: Shield,
-    title: "Гарантия качества",
-    description: "Предоставляем гарантию на всю продукцию",
+    title: "Гарантия 24 месяца",
+    description: "Уверены в качестве — даем расширенную гарантию на всю мебель",
   }
 ];
 
 const testimonials = [
   {
     name: "Анна М.",
-    role: "Владелец кафе",
-    content: "Заказывали комплект мебели для нашего кафе. Качество превзошло все ожидания!",
+    role: "ЖК «Символ», Москва",
+    content: "Делали кухню в новостройку. Всё точно по размерам, привезли вовремя, установили за день. Живём уже год — никаких нареканий!",
     rating: 5,
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
   },
   {
-    name: "Сергей К.",
-    role: "Дизайнер интерьеров",
-    content: "Регулярно сотрудничаем с HomeStyle. Всегда точные сроки и отличное качество.",
+    name: "Сергей и Ольга К.",
+    role: "ЖК «Садовые кварталы», МО",
+    content: "Заказывали шкаф-купе и гардеробную. Мастер приехал на замер в день обращения, через неделю привезли готовую мебель. Качество отличное!",
     rating: 5,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
   },
   {
     name: "Елена В.",
-    role: "Дизайнер",
-    content: "Отличная работа! Шкаф-купе идеально вписался в интерьер. Рекомендую всем!",
+    role: "ЖК «Румянцево Парк»",
+    content: "Искали мебель для детской. Посоветовали экологичные материалы, помогли с дизайном. Ребёнок в восторге, мы тоже!",
     rating: 5,
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&q=80",
   },
   {
     name: "Михаил П.",
-    role: "Менеджер IT-компании",
-    content: "Заказывали офисную мебель. Сотрудники довольны комфортом и качеством.",
+    role: "Новая Москва",
+    content: "Обставляли всю трёшку мебелью от HomeStyle — кухня, два шкафа, гардеробная. Сделали единый дизайн, всё идеально сочетается.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
   }
@@ -114,17 +114,39 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="container relative z-20 text-white">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 animate-fade-up">
-            Создаем мебель вашей мечты
+          <div className="inline-block mb-4 px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full border border-accent/30">
+            <span className="text-accent font-semibold">Собственное производство в Москве</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 animate-fade-up leading-tight">
+            Мебель для вашей новой квартиры под ключ
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-up">
-            Индивидуальный подход, современный дизайн и высокое качество
-            исполнения
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-up leading-relaxed">
+            От замера до установки за 10 дней. Изготавливаем кухни, шкафы-купе и гардеробные по вашим размерам на собственном производстве
           </p>
-          <Link to="/catalog" className="btn-primary inline-flex items-center space-x-2 animate-fade-up">
-            <span>Смотреть каталог</span>
-            <ArrowRight size={20} />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <Link to="/custom-furniture" className="btn-primary inline-flex items-center justify-center space-x-2 animate-fade-up">
+              <span>Заказать бесплатный замер</span>
+              <ArrowRight size={20} />
+            </Link>
+            <Link to="/catalog" className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-colors font-semibold inline-flex items-center justify-center space-x-2 border border-white/30">
+              <span>Смотреть работы</span>
+              <ArrowRight size={20} />
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-6 text-sm md:text-base">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>Гарантия 24 месяца</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>Доставка по Москве и МО</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span>Монтаж в подарок</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -132,8 +154,8 @@ const Index = () => {
       <section className="py-20 bg-secondary">
         <div className="container">
           <SectionTitle
-            title="Почему выбирают нас"
-            subtitle="Мы создаем мебель с заботой о наших клиентах"
+            title="Почему нам доверяют"
+            subtitle="Делаем мебель, которая служит годами — без переплат и компромиссов"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
@@ -186,15 +208,36 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-up">
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-                О компании HomeStyle
+                Мебельная фабрика полного цикла
               </h2>
-              <p className="text-lg mb-6">
-                Мы специализируемся на производстве современной мебели в стиле
-                лофт. Наша команда профессионалов создает уникальные предметы
-                интерьера, которые сочетают в себе функциональность и стиль.
+              <p className="text-lg mb-4 leading-relaxed">
+                Работаем с 2015 года и знаем, как важна каждая деталь в новой квартире. 
+                От первого эскиза до финальной установки — всё делаем сами на собственном производстве.
               </p>
+              <p className="text-lg mb-6 leading-relaxed opacity-90">
+                Специализируемся на мебели для новостроек в Москве и области: 
+                кухни с современными фасадами, шкафы-купе в любую нишу, функциональные гардеробные.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
+                  <span>Точные размеры под ваше помещение</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
+                  <span>Экологичные материалы</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
+                  <span>Прозрачное ценообразование</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
+                  <span>Договор и чек</span>
+                </div>
+              </div>
               <Link to="/about" className="btn-secondary inline-flex items-center space-x-2">
-                <span>Подробнее о нас</span>
+                <span>О фабрике подробнее</span>
                 <ArrowRight size={20} />
               </Link>
             </div>
@@ -213,8 +256,8 @@ const Index = () => {
       <section className="py-20 bg-secondary">
         <div className="container">
           <SectionTitle
-            title="Отзывы клиентов"
-            subtitle="Что говорят о нас наши клиенты"
+            title="Мебель в реальных квартирах"
+            subtitle="Отзывы тех, кто уже обставил свои новостройки"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -256,30 +299,30 @@ const Index = () => {
       <section className="py-20">
         <div className="container">
           <SectionTitle
-            title="Наши услуги"
-            subtitle="Полный спектр услуг для создания идеального интерьера"
+            title="Всё под ключ"
+            subtitle="От эскиза до установки — вам не придётся ни о чём беспокоиться"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="card p-8 text-center group">
               <div className="w-16 h-16 mx-auto mb-6 accent-gradient rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Wrench className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-4">Изготовление на заказ</h3>
-              <p className="text-muted-foreground">Создаем мебель по индивидуальным размерам и дизайну</p>
+              <h3 className="text-xl font-heading font-semibold mb-4">Производство под ваши размеры</h3>
+              <p className="text-muted-foreground">Изготавливаем точно по вашему помещению — никаких щелей и зазоров</p>
             </div>
             <div className="card p-8 text-center group">
               <div className="w-16 h-16 mx-auto mb-6 accent-gradient rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Truck className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Доставка и монтаж</h3>
-              <p className="text-muted-foreground">Бережная доставка и профессиональная установка</p>
+              <p className="text-muted-foreground">Доставим в удобное время и установим за один день</p>
             </div>
             <div className="card p-8 text-center group">
               <div className="w-16 h-16 mx-auto mb-6 accent-gradient rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-4">Гарантийное обслуживание</h3>
-              <p className="text-muted-foreground">Полная гарантия и послепродажное обслуживание</p>
+              <h3 className="text-xl font-heading font-semibold mb-4">Гарантия 24 месяца</h3>
+              <p className="text-muted-foreground">Полная гарантия на мебель и фурнитуру. Быстро решим любой вопрос</p>
             </div>
           </div>
         </div>
@@ -289,26 +332,26 @@ const Index = () => {
       <section className="py-20 hero-gradient text-white">
         <div className="container">
           <SectionTitle
-            title="Наши достижения"
-            subtitle="Цифры, которые говорят о нашем опыте"
+            title="Нам доверяют"
+            subtitle="Цифры говорят лучше слов"
             className="text-white"
           />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">8+</div>
-              <div className="text-lg opacity-90">Лет на рынке</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">9 лет</div>
+              <div className="text-lg opacity-90">На рынке Москвы</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">1000+</div>
-              <div className="text-lg opacity-90">Довольных клиентов</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">1200+</div>
+              <div className="text-lg opacity-90">Довольных семей</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">2500+</div>
-              <div className="text-lg opacity-90">Выполненных заказов</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">2800+</div>
+              <div className="text-lg opacity-90">Единиц мебели изготовлено</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">85+</div>
-              <div className="text-lg opacity-90">Городов доставки</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">98%</div>
+              <div className="text-lg opacity-90">Клиентов рекомендуют нас</div>
             </div>
           </div>
         </div>
@@ -323,10 +366,10 @@ const Index = () => {
           />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { step: "01", title: "Консультация", desc: "Обсуждаем ваши пожелания и требования" },
-              { step: "02", title: "Замер", desc: "Бесплатный выезд специалиста для замеров" },
-              { step: "03", title: "Производство", desc: "Изготавливаем мебель на собственном производстве" },
-              { step: "04", title: "Доставка", desc: "Доставляем и устанавливаем готовую мебель" }
+              { step: "01", title: "Звонок или заявка", desc: "Свяжитесь с нами любым удобным способом" },
+              { step: "02", title: "Замер бесплатно", desc: "Мастер приедет в удобное время и снимет точные размеры" },
+              { step: "03", title: "Производство 7-10 дней", desc: "Изготавливаем на собственном оборудовании в Москве" },
+              { step: "04", title: "Доставка и монтаж", desc: "Привезём, установим и уберём за собой" }
             ].map((item, index) => (
               <div key={index} className="card p-6 text-center relative">
                 <div className="text-6xl font-bold text-accent/20 mb-4">{item.step}</div>
@@ -346,19 +389,19 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Готовы обсудить ваш проект?
+            Начните с бесплатного замера
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Свяжитесь с нами для консультации и расчета стоимости. Первая консультация бесплатно!
+            Мастер приедет в удобное время, снимет размеры, покажет образцы материалов и рассчитает точную стоимость. Всё бесплатно и без обязательств
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contacts" className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center justify-center space-x-2">
-              <span>Связаться с нами</span>
-              <ArrowRight size={20} />
-            </Link>
-            <Link to="/custom-furniture" className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold inline-flex items-center justify-center space-x-2">
-              <span>Заказать замер</span>
+            <Link to="/custom-furniture" className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center justify-center space-x-2">
+              <span>Заказать бесплатный замер</span>
               <Ruler size={20} />
+            </Link>
+            <Link to="/contacts" className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold inline-flex items-center justify-center space-x-2">
+              <span>Позвонить нам</span>
+              <ArrowRight size={20} />
             </Link>
           </div>
         </div>

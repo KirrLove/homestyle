@@ -360,8 +360,8 @@ const Catalog = () => {
     <div className="py-24 animate-fade-in">
       <div className="container">
         <SectionTitle
-          title="Каталог мебели"
-          subtitle="Широкий выбор мебели для вашего дома"
+          title="Наши работы"
+          subtitle="Примеры мебели, которую мы изготовили для реальных квартир в Москве и МО"
         />
 
         {/* Search and Filters */}

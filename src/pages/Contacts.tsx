@@ -4,16 +4,16 @@ import ContactForm from "../components/shared/ContactForm";
 
 const officeInfo = [
   {
-    title: "Главный офис",
-    address: "г. Кузнецк, ул. Центральная, 15",
+    title: "Офис продаж в Москве",
+    address: "Москва, проспект Мира, 100",
     phone: "+7 (977) 044-03-44",
     email: "homestyle158@gmail.com",
-    hours: "Пн-Пт: 9:00-18:00, Сб: 10:00-16:00",
+    hours: "Ежедневно: 9:00-21:00",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
   },
   {
     title: "Производство",
-    address: "г. Кузнецк, Промышленная зона",
+    address: "Москва, Производственная зона",
     phone: "+7 (977) 044-03-45",
     email: "production@homestyle158.ru",
     hours: "Пн-Пт: 8:00-17:00",
@@ -25,29 +25,29 @@ const contactMethods = [
   {
     icon: Phone,
     title: "Позвоните нам",
-    description: "Быстрая консультация по телефону",
+    description: "Бесплатная консультация и расчёт",
     info: "+7 (977) 044-03-44",
     action: "tel:+79770440344"
   },
   {
     icon: Mail,
     title: "Напишите письмо",
-    description: "Подробная консультация по email",
+    description: "Ответим в течение часа",
     info: "homestyle158@gmail.com",
     action: "mailto:homestyle158@gmail.com"
   },
   {
     icon: MessageCircle,
-    title: "Онлайн-чат",
-    description: "Мгновенные ответы в мессенджерах",
-    info: "WhatsApp, Telegram",
-    action: "#"
+    title: "WhatsApp",
+    description: "Быстрые ответы в мессенджере",
+    info: "+7 (977) 044-03-44",
+    action: "https://wa.me/79770440344"
   },
   {
     icon: Calendar,
-    title: "Запись на встречу",
-    description: "Личная консультация в офисе",
-    info: "По предварительной записи",
+    title: "Заказать замер",
+    description: "Мастер приедет бесплатно",
+    info: "Выезжаем ежедневно",
     action: "#"
   }
 ];
@@ -55,37 +55,45 @@ const contactMethods = [
 const advantages = [
   {
     icon: Users,
-    title: "Персональный менеджер",
-    description: "За каждым клиентом закрепляется персональный менеджер"
+    title: "Работаем с 2015 года",
+    description: "9 лет делаем мебель для новостроек в Москве и области"
   },
   {
     icon: Clock,
-    title: "Быстрый ответ",
-    description: "Отвечаем на обращения в течение 30 минут"
+    title: "Ответим за 15 минут",
+    description: "Перезвоним быстро и ответим на все вопросы"
   },
   {
     icon: Award,
-    title: "Гарантия качества",
-    description: "Полная гарантия на все виды работ и материалы"
+    title: "Гарантия 24 месяца",
+    description: "Расширенная гарантия на мебель и фурнитуру"
   }
 ];
 
 const faqs = [
   {
-    question: "Как долго изготавливается мебель на заказ?",
-    answer: "Срок изготовления составляет от 14 до 30 рабочих дней в зависимости от сложности проекта и загруженности производства."
+    question: "Сколько стоит мебель на заказ?",
+    answer: "Стоимость зависит от размеров, материалов и фурнитуры. Кухни от 85 000₽, шкафы-купе от 45 000₽. Точную цену рассчитаем после замера — это бесплатно."
   },
   {
-    question: "Предоставляете ли вы гарантию?",
-    answer: "Да, мы предоставляем гарантию на всю продукцию от 12 месяцев. На фурнитуру действует расширенная гарантия до 5 лет."
+    question: "Как быстро изготовите мебель?",
+    answer: "Изготавливаем за 7-10 рабочих дней на собственном производстве в Москве. Точные сроки согласуем после замера."
   },
   {
-    question: "Возможна ли доставка в другие города?",
-    answer: "Да, мы осуществляем доставку по всей России. Стоимость доставки рассчитывается индивидуально в зависимости от расстояния и объема заказа."
+    question: "Выезжаете на замер бесплатно?",
+    answer: "Да, выезд мастера на замер по Москве и области полностью бесплатный. Мастер приедет в удобное время, снимет размеры и покажет образцы материалов."
   },
   {
-    question: "Можно ли посмотреть образцы материалов?",
-    answer: "Конечно! В нашем шоу-руме представлены образцы всех материалов, фурнитуры и готовые изделия. Также возможен выезд с образцами к клиенту."
+    question: "Какая гарантия на мебель?",
+    answer: "Даём расширенную гарантию 24 месяца на всю мебель. На импортную фурнитуру гарантия от производителя до 10 лет."
+  },
+  {
+    question: "Монтаж входит в стоимость?",
+    answer: "Да, профессиональный монтаж входит в стоимость. Установим за один день и уберём весь мусор."
+  },
+  {
+    question: "Можно посмотреть образцы материалов?",
+    answer: "Мастер привезёт образцы материалов, фасадов и фурнитуры прямо к вам. Или приезжайте в наш офис — покажем всё на готовых изделиях."
   }
 ];
 
@@ -105,7 +113,7 @@ const Contacts = () => {
             Свяжитесь с нами
           </h1>
           <p className="text-xl md:text-2xl max-w-2xl">
-            Мы всегда готовы ответить на ваши вопросы и помочь с выбором мебели
+            Ответим на все вопросы о мебели и договоримся о бесплатном замере в удобное для вас время
           </p>
         </div>
       </section>
@@ -141,8 +149,8 @@ const Contacts = () => {
       <section className="py-20 bg-secondary">
         <div className="container">
           <SectionTitle
-            title="Наши офисы"
-            subtitle="Приезжайте к нам в гости"
+            title="Где мы находимся"
+            subtitle="Офис продаж и производство в Москве"
           />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {officeInfo.map((office, index) => (
@@ -216,20 +224,20 @@ const Contacts = () => {
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-accent/10 rounded-xl">
+                <div className="mt-8 p-6 bg-accent/10 rounded-xl">
                 <h4 className="font-semibold text-lg mb-3">Режим работы</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Понедельник - Пятница</span>
-                    <span className="font-medium">9:00 - 18:00</span>
+                    <span>Понедельник - Воскресенье</span>
+                    <span className="font-medium">9:00 - 21:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Суббота</span>
-                    <span className="font-medium">10:00 - 16:00</span>
+                    <span>Замеры</span>
+                    <span className="font-medium">Ежедневно</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Воскресенье</span>
-                    <span className="font-medium">Выходной</span>
+                    <span>Консультации</span>
+                    <span className="font-medium">Круглосуточно онлайн</span>
                   </div>
                 </div>
               </div>
@@ -265,7 +273,7 @@ const Contacts = () => {
         <div className="container">
           <SectionTitle
             title="Как нас найти"
-            subtitle="Мы находимся в центре города, удобная транспортная доступность"
+            subtitle="Удобное расположение в Москве, бесплатная парковка для клиентов"
           />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
@@ -274,7 +282,7 @@ const Contacts = () => {
                   <div className="text-center">
                     <MapPin className="w-16 h-16 mx-auto mb-4 text-accent" />
                     <p className="text-muted-foreground mb-2">Здесь будет размещена карта</p>
-                    <p className="text-sm text-muted-foreground">г. Кузнецк, ул. Центральная, 15</p>
+                    <p className="text-sm text-muted-foreground">Москва, проспект Мира, 100</p>
                   </div>
                 </div>
               </div>
@@ -286,15 +294,15 @@ const Contacts = () => {
                 <div className="space-y-3 text-sm">
                   <div>
                     <span className="font-medium">На автомобиле:</span>
-                    <p className="text-muted-foreground">Парковка рядом с офисом, бесплатно</p>
+                    <p className="text-muted-foreground">Бесплатная парковка для клиентов</p>
+                  </div>
+                  <div>
+                    <span className="font-medium">Метро:</span>
+                    <p className="text-muted-foreground">Станция "ВДНХ", 10 минут пешком</p>
                   </div>
                   <div>
                     <span className="font-medium">Общественный транспорт:</span>
-                    <p className="text-muted-foreground">Автобусы №5, №12, остановка "Центральная"</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Пешком:</span>
-                    <p className="text-muted-foreground">5 минут от центральной площади</p>
+                    <p className="text-muted-foreground">Автобусы, троллейбусы до остановки "Проспект Мира"</p>
                   </div>
                 </div>
               </div>
@@ -302,10 +310,10 @@ const Contacts = () => {
               <div className="card p-6">
                 <h3 className="font-heading font-semibold text-lg mb-4">Ориентиры</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Рядом с торговым центром "Центральный"</li>
-                  <li>• Напротив городского парка</li>
-                  <li>• В здании с синей вывеской</li>
-                  <li>• Вход со стороны ул. Центральная</li>
+                  <li>• В 10 минутах от метро ВДНХ</li>
+                  <li>• Рядом с ТЦ "Ростокино"</li>
+                  <li>• Здание с яркой вывеской HomeStyle</li>
+                  <li>• Вход с проспекта Мира</li>
                 </ul>
               </div>
             </div>
@@ -317,10 +325,10 @@ const Contacts = () => {
       <section className="py-20 accent-gradient text-white">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Готовы начать проект?
+            Закажите бесплатный замер
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Свяжитесь с нами любым удобным способом. Первая консультация бесплатно!
+            Позвоните прямо сейчас или оставьте заявку — мастер приедет в удобное время
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

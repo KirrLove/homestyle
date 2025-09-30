@@ -13,7 +13,7 @@ const Footer = () => {
               <span>Style</span>
             </h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Создаем уникальную мебель для вашего комфорта с 2015 года. Наша философия — качество, стиль и индивидуальность.
+              Мебельная фабрика в Москве. Производим кухни, шкафы-купе и гардеробные на заказ с 2015 года. Собственное производство — полный контроль качества.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-accent transition-colors p-2 hover:bg-white/10 rounded-full">
@@ -47,13 +47,13 @@ const Footer = () => {
                 <div className="p-2 border border-gray-700 rounded-lg">
                   <MapPin size={18} />
                 </div>
-                <span>г. Кузнецк</span>
+                <span>Москва и Московская область</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <div className="p-2 border border-gray-700 rounded-lg">
                   <Clock size={18} />
                 </div>
-                <span>Пн-Пт: 9:00-18:00</span>
+                <span>Ежедневно: 9:00-21:00</span>
               </div>
             </div>
           </div>
@@ -93,15 +93,19 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="text-gray-300 flex items-center">
                 <span className="h-1.5 w-1.5 bg-accent rounded-full mr-2"></span>
-                Срок изготовления: 5-10 рабочих дней
+                Производство в Москве
               </li>
               <li className="text-gray-300 flex items-center">
                 <span className="h-1.5 w-1.5 bg-accent rounded-full mr-2"></span>
-                Доставка по всей России
+                Изготовление 7-10 дней
               </li>
               <li className="text-gray-300 flex items-center">
                 <span className="h-1.5 w-1.5 bg-accent rounded-full mr-2"></span>
-                Собственное производство
+                Бесплатная доставка по МО
+              </li>
+              <li className="text-gray-300 flex items-center">
+                <span className="h-1.5 w-1.5 bg-accent rounded-full mr-2"></span>
+                Гарантия 24 месяца
               </li>
             </ul>
           </div>
