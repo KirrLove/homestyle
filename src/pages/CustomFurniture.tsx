@@ -160,32 +160,32 @@ const CustomFurniture = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center">
+      <section className="relative min-h-[50vh] md:h-[60vh] flex items-center py-16 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
           src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80"
           alt="Мебель на заказ"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="container relative z-20 text-white">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+        <div className="container relative z-20 text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
             Мебель под ваши размеры в Москве
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-2xl">
             Изготовим кухню, шкаф-купе или гардеробную точно под ваше помещение. Производство в Москве, готово за 7-10 дней
           </p>
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span>Замер бесплатно</span>
+          <div className="flex flex-wrap gap-2 md:gap-4">
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
+              <span className="text-xs md:text-base">Замер бесплатно</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span>1200+ довольных семей</span>
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
+              <span className="text-xs md:text-base">1200+ довольных семей</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span>Работаем с 2015 года</span>
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
+              <span className="text-xs md:text-base">Работаем с 2015 года</span>
             </div>
           </div>
         </div>

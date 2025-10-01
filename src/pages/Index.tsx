@@ -106,44 +106,44 @@ const Index = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center">
+      <section className="relative min-h-[70vh] md:h-[80vh] flex items-center py-20 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
           src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80"
           alt="Современная мебель"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="container relative z-20 text-white">
-          <div className="inline-block mb-4 px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full border border-accent/30">
-            <span className="text-accent font-semibold">Собственное производство в Москве</span>
+        <div className="container relative z-20 text-white px-4">
+          <div className="inline-block mb-3 md:mb-4 px-3 py-1.5 md:px-4 md:py-2 bg-accent/20 backdrop-blur-sm rounded-full border border-accent/30">
+            <span className="text-accent font-semibold text-xs md:text-base">Собственное производство в Москве</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 animate-fade-up leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6 animate-fade-up leading-tight">
             Мебель для вашей новой квартиры под ключ
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-up leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-2xl animate-fade-up leading-relaxed">
             От замера до установки за 10 дней. Изготавливаем кухни, шкафы-купе и гардеробные по вашим размерам на собственном производстве
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <Link to="/custom-furniture" className="btn-primary inline-flex items-center justify-center space-x-2 animate-fade-up">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8">
+            <Link to="/custom-furniture" className="btn-primary inline-flex items-center justify-center space-x-2 animate-fade-up text-sm md:text-base whitespace-nowrap">
               <span>Заказать бесплатный замер</span>
-              <ArrowRight size={20} />
+              <ArrowRight size={18} className="md:w-5 md:h-5" />
             </Link>
-            <Link to="/catalog" className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-colors font-semibold inline-flex items-center justify-center space-x-2 border border-white/30">
+            <Link to="/catalog" className="bg-white/10 backdrop-blur-sm text-white px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-white/20 transition-colors font-semibold inline-flex items-center justify-center space-x-2 border border-white/30 text-sm md:text-base whitespace-nowrap">
               <span>Смотреть работы</span>
-              <ArrowRight size={20} />
+              <ArrowRight size={18} className="md:w-5 md:h-5" />
             </Link>
           </div>
-          <div className="flex flex-wrap gap-6 text-sm md:text-base">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
+          <div className="flex flex-wrap gap-3 md:gap-6 text-xs sm:text-sm md:text-base">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
               <span>Гарантия 24 месяца</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
               <span>Доставка по Москве и МО</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
               <span>Монтаж в подарок</span>
             </div>
           </div>
@@ -203,49 +203,49 @@ const Index = () => {
       </section>
 
       {/* About Preview Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-12 md:py-20 bg-primary text-white">
+        <div className="container px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="animate-fade-up">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-4 md:mb-6">
                 Мебельная фабрика полного цикла
               </h2>
-              <p className="text-lg mb-4 leading-relaxed">
+              <p className="text-base md:text-lg mb-3 md:mb-4 leading-relaxed">
                 Работаем с 2015 года и знаем, как важна каждая деталь в новой квартире. 
                 От первого эскиза до финальной установки — всё делаем сами на собственном производстве.
               </p>
-              <p className="text-lg mb-6 leading-relaxed opacity-90">
+              <p className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed opacity-90">
                 Специализируемся на мебели для новостроек в Москве и области: 
                 кухни с современными фасадами, шкафы-купе в любую нишу, функциональные гардеробные.
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
-                  <span>Точные размеры под ваше помещение</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
+                <div className="flex items-start gap-2 md:gap-3">
+                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5 md:mt-1" />
+                  <span className="text-sm md:text-base">Точные размеры под ваше помещение</span>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
-                  <span>Экологичные материалы</span>
+                <div className="flex items-start gap-2 md:gap-3">
+                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5 md:mt-1" />
+                  <span className="text-sm md:text-base">Экологичные материалы</span>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
-                  <span>Прозрачное ценообразование</span>
+                <div className="flex items-start gap-2 md:gap-3">
+                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5 md:mt-1" />
+                  <span className="text-sm md:text-base">Прозрачное ценообразование</span>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
-                  <span>Договор и чек</span>
+                <div className="flex items-start gap-2 md:gap-3">
+                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5 md:mt-1" />
+                  <span className="text-sm md:text-base">Договор и чек</span>
                 </div>
               </div>
-              <Link to="/about" className="btn-secondary inline-flex items-center space-x-2">
+              <Link to="/about" className="btn-secondary inline-flex items-center space-x-2 text-sm md:text-base">
                 <span>О фабрике подробнее</span>
-                <ArrowRight size={20} />
+                <ArrowRight size={18} className="md:w-5 md:h-5" />
               </Link>
             </div>
             <div className="animate-fade-up">
               <img
                 src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&q=80"
                 alt="О компании"
-                className="rounded-lg shadow-xl"
+                className="rounded-lg shadow-xl w-full"
               />
             </div>
           </div>
@@ -329,29 +329,29 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 hero-gradient text-white">
-        <div className="container">
+      <section className="py-12 md:py-20 hero-gradient text-white">
+        <div className="container px-4">
           <SectionTitle
             title="Нам доверяют"
             subtitle="Цифры говорят лучше слов"
             className="text-white"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">9 лет</div>
-              <div className="text-lg opacity-90">На рынке Москвы</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 text-accent">9 лет</div>
+              <div className="text-xs sm:text-sm md:text-lg opacity-90">На рынке Москвы</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">1200+</div>
-              <div className="text-lg opacity-90">Довольных семей</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 text-accent">1200+</div>
+              <div className="text-xs sm:text-sm md:text-lg opacity-90">Довольных семей</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">2800+</div>
-              <div className="text-lg opacity-90">Единиц мебели изготовлено</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 text-accent">2800+</div>
+              <div className="text-xs sm:text-sm md:text-lg opacity-90">Единиц мебели изготовлено</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-accent">98%</div>
-              <div className="text-lg opacity-90">Клиентов рекомендуют нас</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 text-accent">98%</div>
+              <div className="text-xs sm:text-sm md:text-lg opacity-90">Клиентов рекомендуют нас</div>
             </div>
           </div>
         </div>

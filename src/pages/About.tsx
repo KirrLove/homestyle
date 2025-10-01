@@ -115,32 +115,32 @@ const About = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center">
+      <section className="relative min-h-[50vh] md:h-[70vh] flex items-center py-16 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
           src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80"
           alt="О компании"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="container relative z-20 text-white">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+        <div className="container relative z-20 text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
             О компании HomeStyle
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mb-8">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mb-6 md:mb-8">
             Создаем уникальную мебель и воплощаем мечты в реальность с 2015 года
           </p>
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-6 h-6 text-accent" />
-              <span className="text-lg">Собственное производство</span>
+          <div className="flex flex-wrap gap-3 md:gap-6">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle className="w-4 h-4 md:w-6 md:h-6 text-accent flex-shrink-0" />
+              <span className="text-sm md:text-lg">Собственное производство</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-6 h-6 text-accent" />
-              <span className="text-lg">Премиальные материалы</span>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle className="w-4 h-4 md:w-6 md:h-6 text-accent flex-shrink-0" />
+              <span className="text-sm md:text-lg">Премиальные материалы</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-6 h-6 text-accent" />
-              <span className="text-lg">Индивидуальный дизайн</span>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <CheckCircle className="w-4 h-4 md:w-6 md:h-6 text-accent flex-shrink-0" />
+              <span className="text-sm md:text-lg">Индивидуальный дизайн</span>
             </div>
           </div>
         </div>
@@ -191,26 +191,27 @@ const About = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container">
+      <section className="py-12 md:py-20 bg-secondary">
+        <div className="container px-4">
           <SectionTitle
             title="Этапы развития"
             subtitle="Ключевые моменты нашего роста"
           />
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-accent"></div>
-            <div className="space-y-12">
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-accent"></div>
+            <div className="md:hidden absolute left-4 top-0 bottom-0 w-0.5 bg-accent"></div>
+            <div className="space-y-8 md:space-y-12">
               {timeline.map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
-                    <div className="card p-6">
-                      <div className="text-2xl font-bold text-accent mb-2">{item.year}</div>
-                      <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
+                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} flex-row`}>
+                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'} pl-10 md:pl-0`}>
+                    <div className="card p-4 md:p-6">
+                      <div className="text-xl md:text-2xl font-bold text-accent mb-1 md:mb-2">{item.year}</div>
+                      <h3 className="text-base md:text-xl font-heading font-semibold mb-1 md:mb-2">{item.title}</h3>
+                      <p className="text-sm md:text-base text-muted-foreground">{item.description}</p>
                     </div>
                   </div>
-                  <div className="relative z-10 w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg"></div>
-                  <div className="w-1/2"></div>
+                  <div className="absolute left-2.5 md:left-1/2 md:transform md:-translate-x-1/2 z-10 w-3 h-3 md:w-4 md:h-4 bg-accent rounded-full border-2 md:border-4 border-white shadow-lg"></div>
+                  <div className="hidden md:block w-1/2"></div>
                 </div>
               ))}
             </div>
@@ -219,24 +220,24 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 hero-gradient text-white">
-        <div className="container">
+      <section className="py-12 md:py-20 hero-gradient text-white">
+        <div className="container px-4">
           <SectionTitle
             title="Наши достижения в цифрах"
             subtitle="Результаты, которыми мы гордимся"
             className="text-white"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {stats.map((stat, index) => (
               <div
                 key={index}
                 className="text-center animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-4xl md:text-5xl font-heading font-bold text-accent mb-4">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-accent mb-2 md:mb-4">
                   {stat.value}
                 </div>
-                <div className="text-lg opacity-90">{stat.label}</div>
+                <div className="text-xs sm:text-sm md:text-lg opacity-90">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -101,18 +101,18 @@ const Contacts = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center">
+      <section className="relative min-h-[40vh] md:h-[50vh] flex items-center py-16 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
           alt="Контакты"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="container relative z-20 text-white">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+        <div className="container relative z-20 text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
             Свяжитесь с нами
           </h1>
-          <p className="text-xl md:text-2xl max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl">
             Ответим на все вопросы о мебели и договоримся о бесплатном замере в удобное для вас время
           </p>
         </div>
@@ -322,27 +322,27 @@ const Contacts = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 accent-gradient text-white">
-        <div className="container text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+      <section className="py-12 md:py-20 accent-gradient text-white">
+        <div className="container text-center px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-4 md:mb-6">
             Закажите бесплатный замер
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto opacity-90">
             Позвоните прямо сейчас или оставьте заявку — мастер приедет в удобное время
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <a
               href="tel:+79770440344"
-              className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center justify-center space-x-2"
+              className="bg-white text-primary px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center justify-center space-x-2 text-sm md:text-base"
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-4 h-4 md:w-5 md:h-5" />
               <span>Позвонить сейчас</span>
             </a>
             <a
               href="mailto:homestyle158@gmail.com"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold inline-flex items-center justify-center space-x-2"
+              className="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold inline-flex items-center justify-center space-x-2 text-sm md:text-base"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4 md:w-5 md:h-5" />
               <span>Написать письмо</span>
             </a>
           </div>
