@@ -99,25 +99,25 @@ const CustomFurniture = () => {
       step: 1,
       title: "Консультация и замер",
       description: "Бесплатный выезд специалиста для обсуждения проекта и точных замеров",
-      image: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80",
+      image: "https://i.stroy-ka.ru/ca/f9/caf90b78e70babcf74583c4f99c86d4d.jpeg",
     },
     {
       step: 2,
       title: "Проектирование",
       description: "Создание 3D-визуализации и детального проекта мебели",
-      image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80",
+      image: "https://eltov.ru/gallery_gen/ddd31705886ad1ac1b6975429d6c3df1.jpg",
     },
     {
       step: 3,
       title: "Производство",
       description: "Изготовление мебели на современном оборудовании",
-      image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&q=80",
+      image: "https://avatars.mds.yandex.net/get-altay/14312158/2a0000019478aaf4e5838fcf67e0052e4905/XXXL",
     },
     {
       step: 4,
       title: "Монтаж",
       description: "Профессиональная установка мебели",
-      image: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80",
+      image: "https://thehomewoodworker.com/wp-content/uploads/2019/08/How-to-Install-Cabinets-to-Wall-dt-scaled.jpg.webp",
     },
   ];
 
@@ -125,17 +125,17 @@ const CustomFurniture = () => {
     {
       title: "Кухонный гарнитур",
       description: "Современная кухня со встроенной техникой",
-      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80",
+      image: "https://cdn.pm.ru/global_images/goods/274/21b/21b/ce5/1452142_preview.jpg",
     },
     {
       title: "Шкаф-купе",
       description: "Вместительный шкаф с зеркальными дверями",
-      image: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80",
+      image: "https://www.mebeltrislona.ru/wp-content/uploads/2023/06/photo_2023-06-24_11-52-05.jpg",
     },
     {
       title: "Гардеробная",
       description: "Функциональная гардеробная комната",
-      image: "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&q=80",
+      image: "https://mebelkakmebel.ru/assets/images/products/8260/garderobnaya-olston.jpg",
     },
   ];
 
