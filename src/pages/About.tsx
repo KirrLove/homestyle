@@ -176,12 +176,12 @@ const About = () => {
             </div>
             <div className="animate-fade-up grid grid-cols-2 gap-4">
               <img
-                src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80"
+                src="https://cdn1.tenchat.ru/static/vbc-gostinder/2025-06-09/68a71994-8ee5-4e3f-824b-d57dc1c82718.jpg?width=2094&height=1179&fmt=webp"
                 alt="История компании"
                 className="rounded-lg shadow-xl"
               />
               <img
-                src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80"
+                src="https://www.stanki.ru/images/gefest_06.jpg"
                 alt="Производство"
                 className="rounded-lg shadow-xl mt-8"
               />
@@ -382,12 +382,12 @@ const About = () => {
             <div className="animate-fade-up">
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&q=80"
+                  src="https://www.stanki.ru/images/gefest_06.jpg"
                   alt="Производство"
                   className="rounded-lg shadow-xl"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&q=80"
+                  src="https://avatars.mds.yandex.net/i?id=536d9d9a1d7a03e7e7b470d25916f661_l-5231735-images-thumbs&n=13"
                   alt="Оборудование"
                   className="rounded-lg shadow-xl mt-8"
                 />
@@ -403,7 +403,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-up">
               <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80"
+                src="https://i.pinimg.com/originals/02/6e/52/026e52ef380a588d77b8f60b4a039a3d.jpg"
                 alt="Контроль качества"
                 className="rounded-lg shadow-xl"
               />
