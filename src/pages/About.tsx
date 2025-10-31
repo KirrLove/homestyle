@@ -118,7 +118,7 @@ const About = () => {
       <section className="relative min-h-[50vh] md:h-[70vh] flex items-center py-16 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
-          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80"
+          src="https://itrack.ru/upload/iblock/49d/ruez261ytj00rpfn5l3sgva4fhot13kp.png"
           alt="О компании"
           className="absolute inset-0 w-full h-full object-cover"
         />
