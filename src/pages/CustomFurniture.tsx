@@ -163,7 +163,7 @@ const CustomFurniture = () => {
       <section className="relative min-h-[50vh] md:h-[60vh] flex items-center py-16 md:py-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <img
-          src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80"
+          src="https://kitchen-dom.ru/wp-content/uploads/2023/08/2-5.jpg"
           alt="Мебель на заказ"
           className="absolute inset-0 w-full h-full object-cover"
         />
