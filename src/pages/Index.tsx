@@ -112,7 +112,7 @@ const Index = () => {
       <section className="relative min-h-[70vh] md:h-[80vh] flex items-center py-20 md:py-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70 z-10" />
         <img
-          src={heroKitchen}
+          src="https://avatars.mds.yandex.net/get-altay/5490109/2a0000017e5a09dd71a9117720a2f59a186f/orig"
           alt="Современная премиальная кухня HomeStyle"
           className="absolute inset-0 w-full h-full object-cover"
         />
