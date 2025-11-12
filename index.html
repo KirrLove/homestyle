@@ -16,7 +16,19 @@
 
   <body>
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Загружаем аналитику асинхронно с обработкой ошибок для РФ
+      (function() {
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'https://cdn.gpteng.co/gptengineer.js';
+        script.async = true;
+        script.onerror = function() {
+          console.log('Analytics script not loaded - site continues to work normally');
+        };
+        document.body.appendChild(script);
+      })();
+    </script>
   </body>
 </html>
